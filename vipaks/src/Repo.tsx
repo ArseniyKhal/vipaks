@@ -28,7 +28,7 @@ export default function Repo({ repo }: { repo: RepositoryType }) {
 	}
 
 	useEffect(() => {
-		fetchLanguagData()
+		// fetchLanguagData()
 	}, []);
 
 	return (

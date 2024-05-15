@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import { useStore } from "./store";
-import { Avatar, List, ListItem, ListItemText, Typography, Box, Stack, Grid } from '@mui/material';
+import { Avatar, Typography, Box, Stack, Grid, Container, AppBar, Toolbar, Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 // import { ThemeProvider, createTheme, Box } from '@mui/system';
 import { dataUser, dataRepos2, followingData2 } from "./data";
@@ -10,7 +10,7 @@ import { getDataUser, getRepos, getFollowing } from "./services/servicesApi";
 import { UserType, RepositoryType, FollowingType } from "./types";
 import Repo from "./Repo";
 import Following from "./FollowingCard";
-import { maxWidth, minHeight } from "@mui/system";
+import Header from "./components/Header";
 import { transaction } from "mobx";
 
 const MY_NICKNAME = 'ArseniyKhal';
@@ -69,11 +69,13 @@ const ProfileInfo: React.FC = (() => {
 		// fetchUserData();
 		setProfile(dataUser)
 		setDataRepos(dataRepos2)
-		// setDataFollowing(followingData2)
+		setDataFollowing(followingData2)
 	}, []);
 
 	return (
 		<>
+			<Header url='/team' text='Команда' />
+
 			{profile ? <Box sx={{
 				display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, mt: 10, p: 1,
 				'@media (min-width: 600px)': { p: 5 }
@@ -96,6 +98,7 @@ const ProfileInfo: React.FC = (() => {
 				</Link>
 
 				<Typography variant="body1" sx={{
+					mb: 3,
 					'@media (max-width: 500px)': { fontSize: '0.9rem' }
 				}}>
 					Дата создания аккаунта: {new Date(profile.created_at).toLocaleDateString()}
@@ -105,11 +108,7 @@ const ProfileInfo: React.FC = (() => {
 					<>
 						<Typography variant="body1">Список репозиториев:</Typography>
 						<Stack spacing={2}
-							//  width={"100%"}
-							sx={{
-								'@media (max-width: 500px)': { width: '100%' },
-
-							}}>
+							sx={{ mb: 3, '@media (max-width: 500px)': { width: '100%' } }}>
 							{dataRepos.map((repo) => (
 								<Repo key={repo.id} repo={{ ...repo }} />
 							))}
@@ -119,7 +118,7 @@ const ProfileInfo: React.FC = (() => {
 				{dataFollowing &&
 					<>
 						<Typography variant="body1">Список подписок:</Typography>
-						<Grid container spacing={2} >
+						<Grid container spacing={2}>
 							{dataFollowing.map((following) => (
 								<Following key={following.id} following={{ ...following }} />
 							))}

@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { Typography, Box, Grid, Avatar, ListItemText } from '@mui/material';
+import { Typography, Box, Grid, Avatar } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Link } from "react-router-dom";
 import { FollowingType } from "./types";
@@ -18,7 +17,7 @@ export default function Following({ following }: { following: FollowingType }) {
 
 	return (
 		<Grid item xs={6} sm={4} md={2} >
-			<Item sx={{ display: 'flex', flexDirection: 'column',  alignItems: 'center', gap: 2 }}>
+			<Item sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
 				<Avatar variant="rounded" src={following.avatar_url} alt={following.login} sx={{ width: "100%", height: 'auto' }} />
 				<Link to={following.html_url} style={{ color: 'black' }}>
 					<Typography variant="body2" sx={{ mb: 1, textAlign: 'center' }}>{following.login}</Typography>
