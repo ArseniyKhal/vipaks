@@ -1,20 +1,22 @@
 import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import { useStore } from "./store";
-import { Avatar, List, ListItem, ListItemText, Typography, Box, Stack, Paper } from '@mui/material';
+import { Avatar, List, ListItem, ListItemText, Typography, Box, Stack, Grid } from '@mui/material';
 import { styled } from '@mui/material/styles';
 // import { ThemeProvider, createTheme, Box } from '@mui/system';
-import { dataUser, dataRepos2 } from "./data";
+import { dataUser, dataRepos2, followingData2 } from "./data";
 import { Link } from "react-router-dom";
-import { getDataUser, getRepos } from "./services/servicesApi";
-import { UserType, Repository } from "./types";
+import { getDataUser, getRepos, getFollowing } from "./services/servicesApi";
+import { UserType, RepositoryType, FollowingType } from "./types";
 import Repo from "./Repo";
+import Following from "./FollowingCard";
 
 const MY_NICKNAME = 'ArseniyKhal';
 
 const ProfileInfo: React.FC = (() => {
 	const [profile, setProfile] = React.useState<UserType | null>(null);
-	const [dataRepos, setDataRepos] = React.useState<Repository[]>([]);
+	const [dataRepos, setDataRepos] = React.useState<RepositoryType[]>([]);
+	const [dataFollowing, setDataFollowing] = React.useState<FollowingType[]>([]);
 	const [textErr, setTextErr] = React.useState<string | null>(null);
 
 	// const { profileStore } = useStore();
@@ -25,6 +27,16 @@ const ProfileInfo: React.FC = (() => {
 		try {
 			const reposData = await getRepos(url);
 			reposData && setDataRepos(reposData);
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	const fetchFollowingData = async (url: string) => {
+		try {
+			const followingData = await getFollowing(url);
+			followingData && setDataFollowing(followingData);
+			console.log(followingData);
 		} catch (error) {
 			console.error(error);
 		}
@@ -41,7 +53,8 @@ const ProfileInfo: React.FC = (() => {
 			} else {
 				setTextErr(null);
 				setProfile(userData)
-				fetchReposData(userData.repos_url);
+				userData.repos_url && fetchReposData(userData.repos_url);
+				userData.following_url && fetchFollowingData(userData.following_url.replace(/\{.*?\}/g, ''));
 			}
 		} catch (error) {
 			setTextErr("Error: " + error);
@@ -53,13 +66,13 @@ const ProfileInfo: React.FC = (() => {
 	useEffect(() => {
 		// fetchUserData();
 		setProfile(dataUser)
+		// setDataRepos(dataRepos2)
+		setDataFollowing(followingData2)
 	}, []);
-
-
 
 	return (
 		<>
-			{profile ? <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, mt: 5 }}>
+			{profile ? <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, mt: 5, p: 5 }}>
 				<Avatar src={profile.avatar_url} alt={profile.login} sx={{ width: 400, height: 400, mb: 3 }} />
 				<Link to={profile.html_url} style={{ color: 'black' }}>
 					<Typography variant="h5" sx={{ fontWeight: 'bold', mb: 1, }} >{profile.login}</Typography>
@@ -78,8 +91,15 @@ const ProfileInfo: React.FC = (() => {
 						</Stack>
 					</>}
 
-
-				<Typography variant="body1">Список подписок пользователя (following_url)</Typography>
+				{dataFollowing &&
+					<>
+						<Typography variant="body1">Список подписок:</Typography>
+						<Grid container spacing={2} width={900}>
+							{dataFollowing.map((following) => (
+								<Following key={following.id} following={{ ...following }} />
+							))}
+						</Grid>
+					</>}
 				{/* <List>
 						{dataUser?.following.map((user: any) => (
 							<ListItem key={user.id}>

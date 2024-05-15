@@ -1,9 +1,9 @@
 import { createContext, useContext } from "react";
 import { observable, action, makeObservable } from "mobx";
-import { Profile } from "./types.d";
+import { Profile, UserType } from "./types.d";
 
 class ProfileStore {
-	profile: Profile | null = null;
+	profile: UserType | null = null;
 
 	constructor() {
 		makeObservable(this, {

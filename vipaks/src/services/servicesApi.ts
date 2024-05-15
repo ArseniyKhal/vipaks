@@ -12,3 +12,8 @@ export const getRepos = (url: string) => {
 export const getLanguages = (url: string) => {
 	return fetch(url).then((res) => res.json());
 }
+
+export const getFollowing = (url: string) => {
+console.log(url);
+	return fetch(url).then((res) => res.json());
+}

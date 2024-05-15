@@ -9,32 +9,6 @@ import TeamTab from "./TeamTab";
 import { Box, Container, AppBar, Toolbar, Typography, Button } from '@mui/material';
 import { minHeight } from '@mui/system';
 
-
-// const useStyles: Theme = makeStyles(() => ({
-// 	root: {
-// 		textAlign: "center",
-// 		padding: "20px",
-// 	},
-// }));
-
-// const theme = createTheme({
-// 	palette: {
-// 		background: {
-// 			paper: '#fff',
-// 		},
-// 		text: {
-// 			primary: '#173A5E',
-// 			secondary: '#46505A',
-// 		},
-// 		action: {
-// 			active: '#001E3C',
-// 		},
-// 		success: {
-// 			dark: '#009688',
-// 		},
-// 	},
-// });
-
 const App: React.FC = () => {
 	return (
 		<>
@@ -48,14 +22,16 @@ const App: React.FC = () => {
 					</Toolbar>
 				</Container>
 			</AppBar>
-			<main style={{ backgroundColor: '#f1f1f1', minHeight: '100dvh' }}>
-				<Container maxWidth="lg" sx={{ backgroundColor: '#f1eeee', pt: 10 }}  >
+			<main style={{ backgroundColor: '#f1f1f1'}}>
+				<Container maxWidth="lg" sx={{ backgroundColor: '#f1eeee', pt: 10 }}>
+					<div style={{ minHeight: '100dvh' }}>
 					<BrowserRouter>
 						<Routes>
 							<Route path="/" element={<ProfileTab />} />
 							<Route path="/team" element={<TeamTab />} />
 						</Routes>
 					</BrowserRouter>
+					</div>
 				</Container>
 			</main>
 		</>

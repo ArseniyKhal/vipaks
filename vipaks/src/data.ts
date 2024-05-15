@@ -35,6 +35,49 @@ export const dataUser: UserType = {
 	"updated_at": "2024-05-14T05:14:11Z"
 }
 
+export const followingData2 = [
+	{
+		"login": "GlebkaF",
+		"id": 8992139,
+		"node_id": "MDQ6VXNlcjg5OTIxMzk=",
+		"avatar_url": "https://avatars.githubusercontent.com/u/8992139?v=4",
+		"gravatar_id": "",
+		"url": "https://api.github.com/users/GlebkaF",
+		"html_url": "https://github.com/GlebkaF",
+		"followers_url": "https://api.github.com/users/GlebkaF/followers",
+		"following_url": "https://api.github.com/users/GlebkaF/following{/other_user}",
+		"gists_url": "https://api.github.com/users/GlebkaF/gists{/gist_id}",
+		"starred_url": "https://api.github.com/users/GlebkaF/starred{/owner}{/repo}",
+		"subscriptions_url": "https://api.github.com/users/GlebkaF/subscriptions",
+		"organizations_url": "https://api.github.com/users/GlebkaF/orgs",
+		"repos_url": "https://api.github.com/users/GlebkaF/repos",
+		"events_url": "https://api.github.com/users/GlebkaF/events{/privacy}",
+		"received_events_url": "https://api.github.com/users/GlebkaF/received_events",
+		"type": "User",
+		"site_admin": false
+	},
+	{
+		"login": "EvgeniaLeleo",
+		"id": 88904845,
+		"node_id": "MDQ6VXNlcjg4OTA0ODQ1",
+		"avatar_url": "https://avatars.githubusercontent.com/u/88904845?v=4",
+		"gravatar_id": "",
+		"url": "https://api.github.com/users/EvgeniaLeleo",
+		"html_url": "https://github.com/EvgeniaLeleo",
+		"followers_url": "https://api.github.com/users/EvgeniaLeleo/followers",
+		"following_url": "https://api.github.com/users/EvgeniaLeleo/following{/other_user}",
+		"gists_url": "https://api.github.com/users/EvgeniaLeleo/gists{/gist_id}",
+		"starred_url": "https://api.github.com/users/EvgeniaLeleo/starred{/owner}{/repo}",
+		"subscriptions_url": "https://api.github.com/users/EvgeniaLeleo/subscriptions",
+		"organizations_url": "https://api.github.com/users/EvgeniaLeleo/orgs",
+		"repos_url": "https://api.github.com/users/EvgeniaLeleo/repos",
+		"events_url": "https://api.github.com/users/EvgeniaLeleo/events{/privacy}",
+		"received_events_url": "https://api.github.com/users/EvgeniaLeleo/received_events",
+		"type": "User",
+		"site_admin": false
+	}
+]
+
 export const dataRepos2 = [
 	{
 		"id": 787536040,

@@ -3,7 +3,7 @@ import { Typography, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Link } from "react-router-dom";
 import { getLanguages } from "./services/servicesApi";
-import { Repository } from "./types";
+import { RepositoryType } from "./types";
 
 const Item = styled(Box)(({ theme }) => ({
 	...theme.typography.body2,
@@ -15,8 +15,8 @@ const Item = styled(Box)(({ theme }) => ({
 }));
 
 
-export default function Repo({ repo }: { repo: Repository }) {
-	const [languages, setLanguages] = useState<any>(null);
+export default function Repo({ repo }: { repo: RepositoryType }) {
+	const [languages, setLanguages] = useState<{[key: string]: string}>({});
 
 	const fetchLanguagData = async () => {
 		try {
