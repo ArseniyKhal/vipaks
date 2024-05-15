@@ -10,6 +10,8 @@ import { getDataUser, getRepos, getFollowing } from "./services/servicesApi";
 import { UserType, RepositoryType, FollowingType } from "./types";
 import Repo from "./Repo";
 import Following from "./FollowingCard";
+import { maxWidth, minHeight } from "@mui/system";
+import { transaction } from "mobx";
 
 const MY_NICKNAME = 'ArseniyKhal';
 
@@ -66,25 +68,48 @@ const ProfileInfo: React.FC = (() => {
 	useEffect(() => {
 		// fetchUserData();
 		setProfile(dataUser)
-		// setDataRepos(dataRepos2)
-		setDataFollowing(followingData2)
+		setDataRepos(dataRepos2)
+		// setDataFollowing(followingData2)
 	}, []);
 
 	return (
 		<>
-			{profile ? <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, mt: 5, p: 5 }}>
-				<Avatar src={profile.avatar_url} alt={profile.login} sx={{ width: 400, height: 400, mb: 3 }} />
-				<Link to={profile.html_url} style={{ color: 'black' }}>
-					<Typography variant="h5" sx={{ fontWeight: 'bold', mb: 1, }} >{profile.login}</Typography>
+			{profile ? <Box sx={{
+				display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1, mt: 10, p: 1,
+				'@media (min-width: 600px)': { p: 5 }
+			}}>
+
+				<Avatar src={profile.avatar_url} alt={profile.login}
+					sx={{
+						mb: 3, width: 400, height: 'auto',
+						'@media (max-width: 768px)': { width: '50vw', mb: 2 }
+					}} />
+
+				<Link to={profile.html_url} style={{ color: 'black', textDecoration: 'none' }} >
+					<Typography variant="h5" sx={{
+						fontWeight: 'bold', mb: 1,
+						'@media (max-width: 500px)': { fontSize: '1.2rem' },
+						'&:hover': {
+							textShadow: '0 2px 4px rgba(0,0,0,0.2)'
+						}
+					}}>{profile.login}</Typography>
 				</Link>
-				<Typography variant="body1"   >
+
+				<Typography variant="body1" sx={{
+					'@media (max-width: 500px)': { fontSize: '0.9rem' }
+				}}>
 					Дата создания аккаунта: {new Date(profile.created_at).toLocaleDateString()}
 				</Typography>
 
 				{dataRepos &&
 					<>
 						<Typography variant="body1">Список репозиториев:</Typography>
-						<Stack spacing={2} width={900}>
+						<Stack spacing={2}
+							//  width={"100%"}
+							sx={{
+								'@media (max-width: 500px)': { width: '100%' },
+
+							}}>
 							{dataRepos.map((repo) => (
 								<Repo key={repo.id} repo={{ ...repo }} />
 							))}
@@ -94,22 +119,14 @@ const ProfileInfo: React.FC = (() => {
 				{dataFollowing &&
 					<>
 						<Typography variant="body1">Список подписок:</Typography>
-						<Grid container spacing={2} width={900}>
+						<Grid container spacing={2} >
 							{dataFollowing.map((following) => (
 								<Following key={following.id} following={{ ...following }} />
 							))}
 						</Grid>
 					</>}
-				{/* <List>
-						{dataUser?.following.map((user: any) => (
-							<ListItem key={user.id}>
-								<Avatar src={user.avatar_url} />
-								<ListItemText primary={user.login} />
-							</ListItem>
-						))}
-					</List> */}
+
 			</Box> :
-				// <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 2 }} >Пользователь не найден</Typography>}
 				<Typography variant="h5" sx={{ fontWeight: 'bold', mb: 2 }} >{textErr}</Typography>}
 		</>
 	);

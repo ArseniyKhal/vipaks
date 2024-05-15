@@ -17,9 +17,9 @@ const Item = styled(Box)(({ theme }) => ({
 export default function Following({ following }: { following: FollowingType }) {
 
 	return (
-		<Grid item xs={2}>
+		<Grid item xs={6} sm={4} md={2} >
 			<Item sx={{ display: 'flex', flexDirection: 'column',  alignItems: 'center', gap: 2 }}>
-				<Avatar src={following.avatar_url} alt={following.login} sx={{ width: 60, height: 60 }} />
+				<Avatar variant="rounded" src={following.avatar_url} alt={following.login} sx={{ width: "100%", height: 'auto' }} />
 				<Link to={following.html_url} style={{ color: 'black' }}>
 					<Typography variant="body2" sx={{ mb: 1, textAlign: 'center' }}>{following.login}</Typography>
 				</Link>

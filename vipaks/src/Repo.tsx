@@ -16,7 +16,7 @@ const Item = styled(Box)(({ theme }) => ({
 
 
 export default function Repo({ repo }: { repo: RepositoryType }) {
-	const [languages, setLanguages] = useState<{[key: string]: string}>({});
+	const [languages, setLanguages] = useState<{ [key: string]: string }>({});
 
 	const fetchLanguagData = async () => {
 		try {
@@ -32,7 +32,7 @@ export default function Repo({ repo }: { repo: RepositoryType }) {
 	}, []);
 
 	return (
-		<Item key={repo.id}  >
+		<Item key={repo.id} sx={{ '@media (max-width: 500px)': { display: 'flex', flexDirection: 'column', gap: 1 } }}  >
 			<Link to={repo.html_url} style={{ color: 'black' }}>
 				<Typography variant="body2" sx={{
 					mb: 1,
@@ -55,7 +55,7 @@ export default function Repo({ repo }: { repo: RepositoryType }) {
 			<Typography variant="body2">
 				Дата создания репозитория: {new Date(repo.created_at).toLocaleDateString()}
 			</Typography>
-			<Typography variant="body2">
+			<Typography variant="body2" style={{ wordBreak: 'break-all' }} >
 				Ссылка на клонирование репозитория: {repo.clone_url}
 			</Typography>
 		</Item>
