@@ -19,7 +19,7 @@ const TeamList: React.FC = observer(() => {
 		<>
 			<Box sx={{ backgroundColor: '#cccccc', flex: "0 1 50%", p: 2, borderRadius: 2 }}>
 				<Typography variant="h4" sx={{ fontWeight: 'bold', textAlign: 'center', mb: 1 }} >Команда</Typography>
-				<Button onClick={() => sortTeam()} variant="contained" sx={{  mb: 1, mt: 2, width: '100%', '@media (min-width: 400px)': { width: '320px' } }}>
+				<Button onClick={() => sortTeam()} variant="contained" sx={{ mb: 1, mt: 2, width: '100%', '@media (min-width: 400px)': { width: '320px' } }}>
 					сортировать по {ascending ? "убыванию" : "возрастанию"}
 				</Button>
 				<List>
@@ -33,7 +33,7 @@ const TeamList: React.FC = observer(() => {
 								primary={
 									<Typography variant="body1" sx={{ fontWeight: 'bold', wordBreak: 'break-all' }} >{member.login}</Typography>
 								} />
-							<Button onClick={() => handleRemoveMember(member.id)} variant="contained" sx={{ minWidth: '30px', p: 0 }}>
+							<Button onClick={() => handleRemoveMember(member.id)} variant="contained" sx={{ minWidth: '30px' }}>
 								<Box sx={{ width: '130px', '@media (max-width: 600px)': { display: 'none' } }} >Remove</Box>
 								<Box sx={{ fontSize: '18px', '@media (min-width: 601px)': { display: 'none' } }} >-</Box>
 							</Button>

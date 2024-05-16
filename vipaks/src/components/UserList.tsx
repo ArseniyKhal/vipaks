@@ -49,7 +49,7 @@ const UserList: React.FC = observer(() => {
 									</Link>
 								}
 							/>
-							<Button onClick={() => handleAddMember(user.id)} variant="contained" sx={{ minWidth: '30px', p: 0 }} >
+							<Button onClick={() => handleAddMember(user.id)} variant="contained" sx={{ minWidth: '30px' }} >
 								<Box sx={{ width: '130px', '@media (max-width: 600px)': { display: 'none' } }} >Add to Team</Box>
 								<Box sx={{ fontSize: '18px', '@media (min-width: 601px)': { display: 'none' } }} >+</Box>
 							</Button>
