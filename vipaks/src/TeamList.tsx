@@ -5,26 +5,23 @@ import { Button, List, ListItem, ListItemText, Box, Typography } from '@mui/mate
 
 const TeamList: React.FC = observer(() => {
 	const [ascending, setAscending] = useState(true);
-	const { team, removeMember } = TeamStore;
+	const { team, removeMember, sortTeamAction } = TeamStore;
 
 	const handleRemoveMember = (id: number) => removeMember(id);
 
-	// // Функция сортировки по имени пользователя
-	// const sortTeam = () => {
-	// 	const sortedTeam = [...teamStore.team].sort((a, b) =>
-	// 		ascending ? a.username.localeCompare(b.username) : b.username.localeCompare(a.username)
-	// 	);
-	// 	setAscending(!ascending);
-	// 	return sortedTeam;
-	// };
-
+	// Сортировки по имени
+	const sortTeam = () => {
+		sortTeamAction(ascending);
+		setAscending(!ascending);
+	};
+	
 	return (
 		<>
 			<Box sx={{ backgroundColor: 'green', flex: "0 1 50%", p: 2, borderRadius: 2 }}>
-				<Typography variant="h4" sx={{ fontWeight: 'bold', textAlign: 'center', mb: 1 }} >Team</Typography>
-				{/* <Button onClick={() => sortTeam()} variant="contained" sx={{ width: '180px', mb: 1, mt: 2 }}>
-					Sort {ascending ? "Descending" : "Ascending"}
-				</Button> */}
+				<Typography variant="h4" sx={{ fontWeight: 'bold', textAlign: 'center', mb: 1 }} >Команда</Typography>
+				<Button onClick={() => sortTeam()} variant="contained" sx={{ width: '280px', mb: 1, mt: 2 }}>
+					сортировать по {ascending ? "убыванию" : "возрастанию"}
+				</Button>
 				<List>
 					{team.map((member) => (
 						<ListItem key={member.id} sx={{ p: 1, display: 'flex', alignItems: 'center', gap: 2 }}>

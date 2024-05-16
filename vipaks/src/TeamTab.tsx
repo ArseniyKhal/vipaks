@@ -7,10 +7,10 @@ import TeamStore from "./store";
 import { Typography, Box } from '@mui/material';
 
 const TeamTab: React.FC = observer(() => {
-	const { getUserAction, isLoading } = TeamStore;
+	const { getUserAction, isLoading, users } = TeamStore;
 
 	useEffect(() => {
-		getUserAction();
+		!users.length && getUserAction();
 	}, []);
 
 	return (

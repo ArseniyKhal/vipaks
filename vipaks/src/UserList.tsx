@@ -23,7 +23,7 @@ const UserList: React.FC = observer(() => {
 	return (
 		<>
 			<Box sx={{ backgroundColor: 'coral', flex: "0 1 50%", p: 2, borderRadius: 2 }}>
-				<Typography variant="h4" sx={{ fontWeight: 'bold', textAlign: 'center', mb: 1 }} >Users</Typography>
+				<Typography variant="h4" sx={{ fontWeight: 'bold', textAlign: 'center', mb: 1 }} >Пользователи</Typography>
 				<TextField
 					label="Search"
 					value={searchQuery}

@@ -1,8 +1,9 @@
 import { createContext, useContext } from "react";
 import { makeAutoObservable, runInAction } from "mobx";
-import { 
+import {
 	// Profile,
-	 UserType } from "./types.d";
+	UserType
+} from "./types.d";
 import { dataTeam2 } from "./data";
 import { getTeamMember } from "./services/servicesApi"
 import { TeamMemberType } from "./types";
@@ -36,6 +37,7 @@ class TeamStore {
 
 	getUserAction = async () => {
 		try {
+			console.log("запрос данных");
 			this.isLoading = true
 			const res = await getTeamMember();
 			runInAction(() => {
@@ -59,6 +61,12 @@ class TeamStore {
 
 	removeMember = (id: number) => {
 		this.team = this.team.filter((user) => user.id !== id)
+	}
+
+	sortTeamAction = (ascending: boolean) => {
+		this.team = this.team.sort((a, b) =>
+			ascending ? a.login.localeCompare(b.login) : b.login.localeCompare(a.login)
+		);
 	}
 }
 
