@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react";
 import TeamStore from "./store";
-import { Avatar, List, ListItem, ListItemAvatar, ListItemText, TextField, Button, Box, Typography } from '@mui/material';
+import { Avatar, List, ListItem, ListItemText, TextField, Button, Box, Typography } from '@mui/material';
 import { Link } from "react-router-dom";
-import { dataTeam2 } from "./data";
+import { TeamMemberType } from "./types";
 
 
 const UserList: React.FC = observer(() => {
@@ -12,9 +12,13 @@ const UserList: React.FC = observer(() => {
 
 	const handleAddMember = (id: number) => addMember(id);
 
-	// const filteredUsers = teamStore.users.filter((user) =>
-	// 	user.username.toLowerCase().includes(searchQuery.toLowerCase())
-	// );
+	// поиск по логину
+	let filteredUsers: TeamMemberType[] = []
+	if (searchQuery) {
+		filteredUsers = users.filter((user) =>
+			user.login.toLowerCase().startsWith(searchQuery.toLowerCase())
+		);
+	}
 
 	return (
 		<>
@@ -27,8 +31,8 @@ const UserList: React.FC = observer(() => {
 					sx={{ width: '100%' }}
 				/>
 				<List>
-					{users.map((user) => (
-						<ListItem key={user.id} sx={{ p: 1, display: 'flex', alignItems: 'center', gap: 2 }} >
+					{(searchQuery ? filteredUsers : users).map((user) => (
+						<ListItem key={user.id} sx={{ display: 'flex', alignItems: 'center', gap: 2 }} >
 							<Avatar src={user.avatar_url} alt={user.login} variant="rounded" />
 							<ListItemText
 								primary={user.login}
