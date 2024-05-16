@@ -12,6 +12,7 @@ const Item = styled(Box)(({ theme }) => ({
 	color: theme.palette.text.secondary,
 	backgroundColor: '#f5f5f5',
 	borderRadius: 10,
+	'@media (max-width: 500px)': { display: 'flex', flexDirection: 'column', gap: 1 }
 }));
 
 
@@ -32,7 +33,7 @@ export default function Repo({ repo }: { repo: RepositoryType }) {
 	}, []);
 
 	return (
-		<Item key={repo.id} sx={{ '@media (max-width: 500px)': { display: 'flex', flexDirection: 'column', gap: 1 } }}  >
+		<Item key={repo.id}   >
 			<Link to={repo.html_url} style={{ color: 'black' }}>
 				<Typography variant="body2" sx={{
 					mb: 1,

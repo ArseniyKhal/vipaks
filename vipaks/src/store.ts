@@ -4,7 +4,6 @@ import {
 	// Profile,
 	UserType
 } from "./types.d";
-import { dataTeam2 } from "./data";
 import { getTeamMember } from "./services/servicesApi"
 import { TeamMemberType } from "./types";
 
@@ -37,7 +36,7 @@ class TeamStore {
 
 	getUserAction = async () => {
 		try {
-			console.log("запрос данных");
+			console.log("запрос данных team");
 			this.isLoading = true
 			const res = await getTeamMember();
 			runInAction(() => {

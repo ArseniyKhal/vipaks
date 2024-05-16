@@ -17,7 +17,9 @@ const TeamTab: React.FC = observer(() => {
 		<>
 			<Header url='/' text='На главную' />
 			{!isLoading ?
-				<Box sx={{ display: 'flex', mt: 10, flex: "0 1 50%", borderRadius: 2, backgroundColor: 'yellow', gap: 2 }}>
+				<Box sx={{ display: 'flex', mt: 10, pb: 10, flex: "0 1 50%", borderRadius: 2, gap: 2, 
+					'@media (max-width: 1000px)': { flexDirection: 'column' }
+				 }}>
 					<TeamList />
 					<UserList />
 				</Box>

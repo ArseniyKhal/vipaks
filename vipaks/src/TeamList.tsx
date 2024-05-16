@@ -14,23 +14,28 @@ const TeamList: React.FC = observer(() => {
 		sortTeamAction(ascending);
 		setAscending(!ascending);
 	};
-	
+
 	return (
 		<>
-			<Box sx={{ backgroundColor: 'green', flex: "0 1 50%", p: 2, borderRadius: 2 }}>
+			<Box sx={{ backgroundColor: '#cccccc', flex: "0 1 50%", p: 2, borderRadius: 2 }}>
 				<Typography variant="h4" sx={{ fontWeight: 'bold', textAlign: 'center', mb: 1 }} >Команда</Typography>
-				<Button onClick={() => sortTeam()} variant="contained" sx={{ width: '280px', mb: 1, mt: 2 }}>
+				<Button onClick={() => sortTeam()} variant="contained" sx={{  mb: 1, mt: 2, width: '100%', '@media (min-width: 400px)': { width: '320px' } }}>
 					сортировать по {ascending ? "убыванию" : "возрастанию"}
 				</Button>
 				<List>
 					{team.map((member) => (
-						<ListItem key={member.id} sx={{ p: 1, display: 'flex', alignItems: 'center', gap: 2 }}>
+						<ListItem key={member.id} sx={{
+							p: 1, display: 'flex', alignItems: 'center', gap: 2, backgroundColor: '#f1eeee',
+							borderRadius: 1,
+							"&:not(:last-child)": { mb: 1 }
+						}}>
 							<ListItemText
 								primary={
-									<Typography variant="body1" sx={{ fontWeight: 'bold' }} >{member.login}</Typography>
+									<Typography variant="body1" sx={{ fontWeight: 'bold', wordBreak: 'break-all' }} >{member.login}</Typography>
 								} />
-							<Button onClick={() => handleRemoveMember(member.id)} variant="contained" sx={{ width: '130px' }}>
-								Remove
+							<Button onClick={() => handleRemoveMember(member.id)} variant="contained" sx={{ minWidth: '30px', p: 0 }}>
+								<Box sx={{ width: '130px', '@media (max-width: 600px)': { display: 'none' } }} >Remove</Box>
+								<Box sx={{ fontSize: '18px', '@media (min-width: 601px)': { display: 'none' } }} >-</Box>
 							</Button>
 						</ListItem>
 					))}

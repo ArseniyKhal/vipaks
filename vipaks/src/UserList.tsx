@@ -5,7 +5,6 @@ import { Avatar, List, ListItem, ListItemText, TextField, Button, Box, Typograph
 import { Link } from "react-router-dom";
 import { TeamMemberType } from "./types";
 
-
 const UserList: React.FC = observer(() => {
 	const [searchQuery, setSearchQuery] = useState("");
 	const { users, addMember } = TeamStore;
@@ -22,7 +21,7 @@ const UserList: React.FC = observer(() => {
 
 	return (
 		<>
-			<Box sx={{ backgroundColor: 'coral', flex: "0 1 50%", p: 2, borderRadius: 2 }}>
+			<Box sx={{ backgroundColor: '#cccccc', flex: "0 1 50%", p: 2, borderRadius: 2 }}>
 				<Typography variant="h4" sx={{ fontWeight: 'bold', textAlign: 'center', mb: 1 }} >Пользователи</Typography>
 				<TextField
 					label="Search"
@@ -32,18 +31,27 @@ const UserList: React.FC = observer(() => {
 				/>
 				<List>
 					{(searchQuery ? filteredUsers : users).map((user) => (
-						<ListItem key={user.id} sx={{ display: 'flex', alignItems: 'center', gap: 2 }} >
+						<ListItem key={user.id} sx={{
+							pt: 0, pb: 0, pl: 1, pr: 1,
+							display: 'flex',
+							alignItems: 'center',
+							gap: 2,
+							backgroundColor: '#f1eeee',
+							borderRadius: 1,
+							"&:not(:last-child)": { mb: 1 }
+						}} >
 							<Avatar src={user.avatar_url} alt={user.login} variant="rounded" />
 							<ListItemText
 								primary={user.login}
 								secondary={
-									<Link to={user.html_url} target="_blank">
+									<Link to={user.html_url} target="_blank" style={{ wordBreak: 'break-all' }}>
 										{user.html_url}
 									</Link>
 								}
 							/>
-							<Button onClick={() => handleAddMember(user.id)} variant="contained" sx={{ width: '130px' }}>
-								Add to Team
+							<Button onClick={() => handleAddMember(user.id)} variant="contained" sx={{ minWidth: '30px', p: 0 }} >
+								<Box sx={{ width: '130px', '@media (max-width: 600px)': { display: 'none' } }} >Add to Team</Box>
+								<Box sx={{ fontSize: '18px', '@media (min-width: 601px)': { display: 'none' } }} >+</Box>
 							</Button>
 						</ListItem>
 					))}

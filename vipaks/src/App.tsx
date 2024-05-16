@@ -10,7 +10,7 @@ import { NotFound } from "./NotFound";
 const App: React.FC = () => {
 	return (
 		<Box style={{ width: '100%', backgroundColor: '#f1f1f1' }}>
-			<Container maxWidth="xl" sx={{ backgroundColor: '#f1eeee', pt: 1 }} style={{ minHeight: '100dvh' }} >
+			<Container maxWidth="xl" sx={{ backgroundColor: '#f1eeee', pt: 1, minHeight: '100dvh', '@media (max-width: 400px)': { p: 0 } }}  >
 				<BrowserRouter>
 					<Routes>
 						<Route path="/" element={<ProfileInfo />} />
