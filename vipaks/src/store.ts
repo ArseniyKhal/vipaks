@@ -1,6 +1,7 @@
 import { createContext, useContext } from "react";
-import { observable, action, makeObservable } from "mobx";
+import { observable, action, makeObservable, makeAutoObservable } from "mobx";
 import { Profile, UserType } from "./types.d";
+import { dataTeam2 } from "./data";
 
 class ProfileStore {
 	profile: UserType | null = null;
@@ -19,59 +20,57 @@ class ProfileStore {
 			});
 	}
 }
-interface TeamMember {
-	username: string;
+interface TeamMemberType {
+	id: number;
+	login: string;
+	avatar_url: string;
+	html_url: string;
+	[key: string]: any;
 }
 
 class TeamStore {
-	team: TeamMember[] = [];
+	team: TeamMemberType[] = [];
 
-	users = [
-		{
-			username: "user1",
-			avatar_url: "https://via.placeholder.com/150",
-			profile_url: "https://github.com/user1",
-		},
-		{
-			username: "user2",
-			avatar_url: "https://via.placeholder.com/150",
-			profile_url: "https://github.com/user2",
-		},
-	];
+	users = dataTeam2
 
 	constructor() {
-		makeObservable(this, {
-			team: observable,
-			users: observable,
-			addMember: action,
-			removeMember: action,
-		});
+		makeAutoObservable(this);
 	}
 
-	addMember(username: string) {
-		// Add member to team
-		this.team.push({ username } as TeamMember);
+	addMember = (id: number) => {
+		const user = this.users.find((user) => user.id === id);
+		if (this.team.find((user) => user.id === id)) {
+			return console.log("уже есть");
+		} else {
+			this.team.push(user as TeamMemberType);
+		}
 	}
 
-	removeMember(username: string) {
-		// Remove member from team
-		this.team = this.team.filter((member) => member.username !== username);
+	removeMember = (id: number) => {
+		this.team = this.team.filter((user) => user.id !== id)
 	}
 }
 
-class RootStore {
-	profileStore: ProfileStore;
-	teamStore: TeamStore;
+// this.team = this.team.filter((member) => member.username !== username);
 
-	constructor() {
-		this.profileStore = new ProfileStore();
-		this.teamStore = new TeamStore();
-	}
-}
 
-const rootStore = new RootStore();
-const StoreContext = createContext(rootStore);
 
-export const useStore = () => useContext(StoreContext);
 
-export default StoreContext;
+// class RootStore {
+// 	profileStore: ProfileStore;
+// 	teamStore: TeamStore;
+
+// 	constructor() {
+// 		this.profileStore = new ProfileStore();
+// 		this.teamStore = new TeamStore();
+// 	}
+// }
+
+// const rootStore = new RootStore();
+// const StoreContext = createContext(rootStore);
+
+// export const useStore = () => useContext(StoreContext);
+
+// export default StoreContext;
+
+export default new TeamStore();
