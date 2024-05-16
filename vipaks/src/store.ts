@@ -1,8 +1,11 @@
 import { createContext, useContext } from "react";
-import { observable, action, makeObservable, makeAutoObservable, runInAction } from "mobx";
-import { Profile, UserType } from "./types.d";
+import { makeAutoObservable, runInAction } from "mobx";
+import { 
+	// Profile,
+	 UserType } from "./types.d";
 import { dataTeam2 } from "./data";
 import { getTeamMember } from "./services/servicesApi"
+import { TeamMemberType } from "./types";
 
 // class ProfileStore {
 // 	profile: UserType | null = null;
@@ -21,17 +24,9 @@ import { getTeamMember } from "./services/servicesApi"
 // 			});
 // 	}
 // }
-interface TeamMemberType {
-	id: number;
-	login: string;
-	avatar_url: string;
-	html_url: string;
-	[key: string]: any;
-}
 
 class TeamStore {
 	team: TeamMemberType[] = [];
-	// users = dataTeam2
 	users: TeamMemberType[] = []
 	isLoading = false
 

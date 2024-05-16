@@ -7,7 +7,7 @@ import { styled } from '@mui/material/styles';
 import { dataUser, dataRepos2, followingData2 } from "./data";
 import { Link } from "react-router-dom";
 import { getDataUser, getRepos, getFollowing } from "./services/servicesApi";
-import { UserType, RepositoryType, FollowingType } from "./types";
+import { UserType, RepositoryType, TeamMemberType } from "./types";
 import Repo from "./Repo";
 import Following from "./FollowingCard";
 import Header from "./components/Header";
@@ -18,7 +18,7 @@ const MY_NICKNAME = 'ArseniyKhal';
 const ProfileInfo: React.FC = (() => {
 	const [profile, setProfile] = React.useState<UserType | null>(null);
 	const [dataRepos, setDataRepos] = React.useState<RepositoryType[]>([]);
-	const [dataFollowing, setDataFollowing] = React.useState<FollowingType[]>([]);
+	const [dataFollowing, setDataFollowing] = React.useState<TeamMemberType[]>([]);
 	const [textErr, setTextErr] = React.useState<string | null>(null);
 
 	// const { profileStore } = useStore();
