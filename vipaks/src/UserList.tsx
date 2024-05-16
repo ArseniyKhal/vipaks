@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react";
-// import { useStore } from "./store";
 import TeamStore from "./store";
 import { Avatar, List, ListItem, ListItemAvatar, ListItemText, TextField, Button, Box, Typography } from '@mui/material';
 import { Link } from "react-router-dom";
@@ -8,9 +7,8 @@ import { dataTeam2 } from "./data";
 
 
 const UserList: React.FC = observer(() => {
-	// const { teamStore } = useStore();
 	const [searchQuery, setSearchQuery] = useState("");
-	const { addMember } = TeamStore;
+	const { users, addMember } = TeamStore;
 
 	const handleAddMember = (id: number) => addMember(id);
 
@@ -29,7 +27,7 @@ const UserList: React.FC = observer(() => {
 					sx={{ width: '100%' }}
 				/>
 				<List>
-					{dataTeam2.map((user) => (
+					{users.map((user) => (
 						<ListItem key={user.id} sx={{ p: 1, display: 'flex', alignItems: 'center', gap: 2 }} >
 							<Avatar src={user.avatar_url} alt={user.login} variant="rounded" />
 							<ListItemText
@@ -46,8 +44,6 @@ const UserList: React.FC = observer(() => {
 						</ListItem>
 					))}
 				</List>
-
-
 			</Box>
 		</>
 	);

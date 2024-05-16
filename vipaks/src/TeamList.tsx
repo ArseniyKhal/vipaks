@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react";
-// import { useStore } from "./store";
 import TeamStore from "./store";
 import { Button, List, ListItem, ListItemText, Box, Typography } from '@mui/material';
 
 const TeamList: React.FC = observer(() => {
 	const [ascending, setAscending] = useState(true);
-	// const { teamStore } = useStore();
 	const { team, removeMember } = TeamStore;
 
 	const handleRemoveMember = (id: number) => removeMember(id);

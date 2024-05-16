@@ -65,11 +65,13 @@ const ProfileInfo: React.FC = (() => {
 	}
 
 
+
 	useEffect(() => {
 		// fetchUserData();
 		setProfile(dataUser)
 		setDataRepos(dataRepos2)
 		setDataFollowing(followingData2)
+		// console.log("вызов");
 	}, []);
 
 	return (

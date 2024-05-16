@@ -1,25 +1,26 @@
 import { createContext, useContext } from "react";
-import { observable, action, makeObservable, makeAutoObservable } from "mobx";
+import { observable, action, makeObservable, makeAutoObservable, runInAction } from "mobx";
 import { Profile, UserType } from "./types.d";
 import { dataTeam2 } from "./data";
+import { getTeamMember } from "./services/servicesApi"
 
-class ProfileStore {
-	profile: UserType | null = null;
+// class ProfileStore {
+// 	profile: UserType | null = null;
 
-	constructor() {
-		makeObservable(this, {
-			profile: observable,
-			fetchUserProfile: action,
-		});
-	}
-	fetchUserProfile(username: string) {
-		fetch(`https://api.github.com/users/${username}`)
-			.then((response) => response.json())
-			.then((data) => {
-				this.profile = data;
-			});
-	}
-}
+// 	constructor() {
+// 		makeObservable(this, {
+// 			profile: observable,
+// 			fetchUserProfile: action,
+// 		});
+// 	}
+// 	fetchUserProfile(username: string) {
+// 		fetch(`https://api.github.com/users/${username}`)
+// 			.then((response) => response.json())
+// 			.then((data) => {
+// 				this.profile = data;
+// 			});
+// 	}
+// }
 interface TeamMemberType {
 	id: number;
 	login: string;
@@ -30,12 +31,27 @@ interface TeamMemberType {
 
 class TeamStore {
 	team: TeamMemberType[] = [];
-
-	users = dataTeam2
+	// users = dataTeam2
+	users: TeamMemberType[] = []
+	isLoading = false
 
 	constructor() {
 		makeAutoObservable(this);
 	}
+
+	getUserAction = async () => {
+		try {
+			this.isLoading = true
+			const res = await getTeamMember();
+			runInAction(() => {
+				this.users = res;
+				this.isLoading = false
+			})
+		} catch {
+			this.isLoading = false
+		}
+	}
+
 
 	addMember = (id: number) => {
 		const user = this.users.find((user) => user.id === id);
@@ -50,9 +66,6 @@ class TeamStore {
 		this.team = this.team.filter((user) => user.id !== id)
 	}
 }
-
-// this.team = this.team.filter((member) => member.username !== username);
-
 
 
 

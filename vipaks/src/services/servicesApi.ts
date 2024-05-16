@@ -14,6 +14,10 @@ export const getLanguages = (url: string) => {
 }
 
 export const getFollowing = (url: string) => {
-console.log(url);
+	return fetch(url).then((res) => res.json());
+}
+
+export const getTeamMember = () => {
+	const url = `${API_BASE_URL}/users?since=50000000`
 	return fetch(url).then((res) => res.json());
 }
