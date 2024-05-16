@@ -1,7 +1,7 @@
 import { Typography, Box, Grid, Avatar } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Link } from "react-router-dom";
-import {  TeamMemberType } from "../types";
+import { TeamMemberType } from "../types";
 
 const Item = styled(Box)(({ theme }) => ({
 	...theme.typography.body2,
@@ -12,9 +12,7 @@ const Item = styled(Box)(({ theme }) => ({
 	borderRadius: 10,
 }));
 
-
 export default function Following({ following }: { following: TeamMemberType }) {
-
 	return (
 		<Grid item xs={6} sm={4} md={2} >
 			<Item sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>

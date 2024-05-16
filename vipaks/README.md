@@ -1,46 +1,68 @@
-# Getting Started with Create React App
+# Тестовое задание соискателю на должность Frontend-разработчика
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Задание:
+Предлагается разработать приложение, состоящие из двух вкладок:
+1. «Мой профиль» (Путь – «/»);
+2. «Моя команда» (Путь – «/team»).
+Вкладка «Мой профиль» должна содержать краткую информацию о вашем профиле в Github (если нет профиля, можно взять информацию у другого пользователя) и иметь следующие элементы:
+• Аватар пользователя;
+• Логин пользователя, при клике на который, мы попадаем на страницу профиля в Github;
+• Дата создания аккаунта;
+• Список репозиториев пользователя (repos_url), содержащий в себе следующую информацию о каждом репозитории:
+	o Название репозитория, кликая на который мы переходим на страницу с репозиторием;
+	o Описание (если имеется);
+	o Язык программирования (languages_url);
+	o Дата создания;
+	o Ссылка на клонирование репозитория (clone_url).
+• Список подписок пользователя (following_url), содержащий в себе следующую информацию о каждой подписке:
+	o Логин, кликая на который мы попадаем на пользователя;
+	o Аватар.
+Вкладка «Команда» должна содержать информацию о вашей предполагаемой команде. Здесь будет иметься два столбца:
+• Левый столбец должен содержать список команды с возможностью удаления участников и сортировкой логинов по убыванию/возрастанию.
+• Правый столбец должен состоять из списка пользователей с возможностью добавления в свою команду и краткой информацией о каждом пользователе:
+	o Логин;
+	o Ссылка на аккаунт пользователя;
+	o Аватар.
+Над правым столбцом должно располагаться текстовое поле с возможностью поиска по логину среди списка пользователей.
 
-## Available Scripts
+Ссылки на API:
+• Информация  о  пользователе  для  вкладки  «Мой  профиль» - https://api.github.com/users/ВашЛогин
+• Список пользователей для вкладки «Моя команда» - https://api.github.com/users?since=50000000
+Требования к приложению:
+• Наличие TypeScript
+•  JS фреймворк/библиотека React 17+ или Vue 3;
+•  UI Фреймворк (Material-ui, Vuetify, Bootstrap или аналогичный);
+•  Маршрутизация с помощью React Router, Vue Router или аналогичный;
+•  Использование хранилища состояний (Mobx, Vuex или аналогичный);
+•  Адаптивность в брейкпоинтах 320, 480 и 768px.
 
-In the project directory, you can run:
+## Установка
 
-### `npm start`
+Склонируйте репозиторий и установите зависимости
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```sh
+npm install
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Перейдите в папку с проектом
 
-### `npm test`
+```sh
+cd vipaks
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Для запуска в development режиме выполните команду
 
-### `npm run build`
+```sh
+npm run start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Приложение будет доступно по адресу: [http://localhost:3000](http://localhost:3000)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+При необходимости production сборки выполните команду
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```sh
+npm run build
+```
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Стек:
+Приложение выполнено с применением: React, TypeScript, Material-ui, React Router, Mobx.
