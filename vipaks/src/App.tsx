@@ -1,11 +1,9 @@
 import React from 'react';
-import './App.css';
 import { Route, Routes, BrowserRouter } from "react-router-dom";
-import ProfileInfo from "./ProfileInfo";
-import TeamTab from "./TeamTab";
-// import {   ThemeProvider, createTheme } from '@mui/system';
+import ProfileInfo from "./page/ProfileInfo";
+import TeamTab from "./page/TeamTab";
 import { Box, Container } from '@mui/material';
-import { NotFound } from "./NotFound";
+import { NotFound } from "./page/NotFound";
 
 const App: React.FC = () => {
 	return (

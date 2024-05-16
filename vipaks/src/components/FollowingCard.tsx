@@ -1,7 +1,7 @@
 import { Typography, Box, Grid, Avatar } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Link } from "react-router-dom";
-import {  TeamMemberType } from "./types";
+import {  TeamMemberType } from "../types";
 
 const Item = styled(Box)(({ theme }) => ({
 	...theme.typography.body2,

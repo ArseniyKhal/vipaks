@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react";
-import TeamStore from "./store";
+import TeamStore from "../store/store";
 import { Avatar, List, ListItem, ListItemText, TextField, Button, Box, Typography } from '@mui/material';
 import { Link } from "react-router-dom";
-import { TeamMemberType } from "./types";
+import { TeamMemberType } from "../types";
 
 const UserList: React.FC = observer(() => {
 	const [searchQuery, setSearchQuery] = useState("");

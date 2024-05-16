@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Typography, Box } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { Link } from "react-router-dom";
-import { getLanguages } from "./services/servicesApi";
-import { RepositoryType } from "./types";
+import { getLanguages } from "../services/servicesApi";
+import { RepositoryType } from "../types";
 
 const Item = styled(Box)(({ theme }) => ({
 	...theme.typography.body2,
@@ -29,7 +29,7 @@ export default function Repo({ repo }: { repo: RepositoryType }) {
 	}
 
 	useEffect(() => {
-		// fetchLanguagData()
+		fetchLanguagData()
 	}, []);
 
 	return (

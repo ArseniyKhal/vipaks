@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react";
-import TeamStore from "./store";
+import TeamStore from "../store/store";
 import { Button, List, ListItem, ListItemText, Box, Typography } from '@mui/material';
 
 const TeamList: React.FC = observer(() => {

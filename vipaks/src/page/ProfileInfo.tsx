@@ -1,17 +1,11 @@
 import React, { useEffect } from "react";
-import { observer } from "mobx-react";
-// import { useStore } from "./store";
-import { Avatar, Typography, Box, Stack, Grid, Container, AppBar, Toolbar, Button } from '@mui/material';
-import { styled } from '@mui/material/styles';
-// import { ThemeProvider, createTheme, Box } from '@mui/system';
-import { dataUser, dataRepos2, followingData2 } from "./data";
+import { Avatar, Typography, Box, Stack, Grid } from '@mui/material';
 import { Link } from "react-router-dom";
-import { getDataUser, getRepos, getFollowing } from "./services/servicesApi";
-import { UserType, RepositoryType, TeamMemberType } from "./types";
-import Repo from "./Repo";
-import Following from "./FollowingCard";
-import Header from "./components/Header";
-import { transaction } from "mobx";
+import { getDataUser, getRepos, getFollowing } from "../services/servicesApi";
+import { UserType, RepositoryType, TeamMemberType } from "../types";
+import Repo from "../components/Repo";
+import Following from "../components/FollowingCard";
+import Header from "../components/Header";
 
 const MY_NICKNAME = 'ArseniyKhal';
 
@@ -20,10 +14,6 @@ const ProfileInfo: React.FC = (() => {
 	const [dataRepos, setDataRepos] = React.useState<RepositoryType[]>([]);
 	const [dataFollowing, setDataFollowing] = React.useState<TeamMemberType[]>([]);
 	const [textErr, setTextErr] = React.useState<string | null>(null);
-
-	// const { profileStore } = useStore();
-	// const { profile }: any = profileStore;
-	// if (!profile) return null;
 
 	const fetchReposData = async (url: string) => {
 		try {
@@ -38,7 +28,6 @@ const ProfileInfo: React.FC = (() => {
 		try {
 			const followingData = await getFollowing(url);
 			followingData && setDataFollowing(followingData);
-			console.log(followingData);
 		} catch (error) {
 			console.error(error);
 		}
@@ -64,14 +53,8 @@ const ProfileInfo: React.FC = (() => {
 		}
 	}
 
-
-
 	useEffect(() => {
-		// fetchUserData();
-		setProfile(dataUser)
-		setDataRepos(dataRepos2)
-		setDataFollowing(followingData2)
-		// console.log("вызов");
+		fetchUserData();
 	}, []);
 
 	return (
